@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Fake-Login</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <span>Sals.Id</span>
+        <button id="darkBtn" class="circle-btn">🌙</button>
+      </div>
+    </header>
+
+    <main class="box-login">
+      <div class="container">
+        <form id="loginForm">
+          <div class="login-container">
+            <div class="email-container">
+              <label for="loginEmail" class="email-text">Email</label>
+              <input type="email" id="loginEmail" class="email-input" />
+            </div>
+            <div class="password-container">
+              <label for="loginPassword" class="password-text">Password</label>
+              <input
+                type="password"
+                id="loginPassword"
+                class="password-input"
+              />
+            </div>
+            <div class="button-container">
+              <a href="register.html" id="signUp" class="sign-up"
+                >Belum punya akun?</a
+              >
+              <button id="loginBtn" class="btn btn-primary" type="submit">
+                Login
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
