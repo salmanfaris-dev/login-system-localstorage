@@ -40,11 +40,16 @@ body.dark-mode {
   color: var(--white);
 }
 
+body.dark-mode .site-header {
+  background-color: var(--gray-800);
+  color: var(--white);
+}
+
 body.dark-mode .circle-btn {
   background-color: var(--white);
 }
 
-body.dark-mode .login-container {
+body.dark-mode .box-container {
   background-color: var(--gray-800);
   color: var(--white);
 }
@@ -58,7 +63,8 @@ body.dark-mode .confirm-password-container label {
 body.dark-mode .email-input,
 body.dark-mode .password-input {
   background-color: var(--dark);
-  border: 1px solid var(--gray-600)
+  color: var(--white);
+  border: 1px solid var(--gray-600);
 }
 
 .container {
@@ -68,6 +74,11 @@ body.dark-mode .password-input {
   padding: 0 3rem;
 }
 
+.site-header {
+  background-color: var(--white);
+  color: var(--dark);
+}
+
 .header-inner {
   display: flex;
   justify-content: space-between;
@@ -75,14 +86,14 @@ body.dark-mode .password-input {
   padding: 2rem 3rem;
 }
 
-.box-login {
+.box-position {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-container {
+.box-container {
   display: flex;
   flex-direction: column;
   background-color: var(--white);
@@ -117,6 +128,16 @@ body.dark-mode .password-input {
 .email-input:focus,
 .password-input:focus {
   outline: 1px solid var(--focus-input);
+}
+
+.title-dashboard{
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.user-email{
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .button-container {
@@ -160,5 +181,17 @@ body.dark-mode .password-input {
 }
 
 .sign-up:hover {
+  color: var(--primary);
+}
+
+.logout-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  color: var(--primary-dark);
+  transition: 0.25s ease;
+}
+
+.logout-btn:hover {
   color: var(--primary);
 }

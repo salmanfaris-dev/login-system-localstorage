@@ -9,13 +9,19 @@ const registerPassword = getId("registerPassword");
 const registerConfirmPassword = getId("registerConfirmPassword");
 const loginBtn = getId("loginBtn");
 const registerBtn = getId("registerBtn");
+const logoutBtn = getId("logoutBtn");
+const userEmail = getId("userEmail");
 
-function loadUsers(key) {
-  return JSON.parse(localStorage.getItem(key)) || [];
+function getStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
 }
 
-function saveUsers(key, value) {
+function setStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function removeStorage(key) {
+  localStorage.removeItem(key);
 }
 
 if (localStorage.getItem("darkMode") === "true") {
@@ -26,7 +32,7 @@ function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 
   const isDark = document.body.classList.contains("dark-mode");
-  saveUsers("darkMode", isDark);
+  setStorage("darkMode", isDark);
 }
 
 if (darkBtn) {
@@ -39,7 +45,7 @@ function clearInput(input) {
 
 function registerUser(e) {
   e.preventDefault();
-  const users = loadUsers("users");
+  const users = getStorage("users") || [];
 
   const emailValue = registerEmail.value.trim();
   const passwordValue = registerPassword.value.trim();
@@ -70,7 +76,7 @@ function registerUser(e) {
 
   users.push(newUser);
   console.log(newUser);
-  saveUsers("users", users);
+  setStorage("users", users);
   clearInput(registerEmail);
   clearInput(registerPassword);
   clearInput(registerConfirmPassword);
@@ -78,7 +84,7 @@ function registerUser(e) {
 
 function loginUser(e) {
   e.preventDefault();
-  const users = loadUsers("users");
+  const users = getStorage("users") || [];
 
   const emailValue = loginEmail.value.trim();
   const passwordValue = loginPassword.value.trim();
@@ -94,12 +100,35 @@ function loginUser(e) {
     alert("Email atau Password salah.");
     return;
   }
-  alert("Login berhasil!");
+  setStorage("isLogin", "true");
+  setStorage("currentUser", emailValue);
+  window.location.href = "dashboard.html";
+}
+
+function logoutUser() {
+  removeStorage("isLogin");
+  removeStorage("currentUser");
+}
+
+if (window.location.pathname.includes("dashboard.html")) {
+  const isLogin = getStorage("isLogin");
+
+  if (isLogin !== "true") {
+    window.location.href = "index.html";
+  }
+
+  const currentUser = getStorage("currentUser");
+  userEmail.textContent = currentUser;
 }
 
 if (registerForm) {
   registerForm.addEventListener("submit", registerUser);
 }
+
 if (loginForm) {
   loginForm.addEventListener("submit", loginUser);
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", logoutUser);
 }
