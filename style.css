@@ -97,7 +97,7 @@ body.dark-mode .password-input {
   display: flex;
   flex-direction: column;
   background-color: var(--white);
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 3rem 2.5rem;
   width: 100%;
   margin-inline: auto;
@@ -125,17 +125,25 @@ body.dark-mode .password-input {
   border-radius: var(--radius-pill);
 }
 
+.error-text {
+  display: flex;
+  font-size: 0.9rem;
+  padding-top: 0.25rem;
+  margin-left: 1rem;
+  color: red;
+}
+
 .email-input:focus,
 .password-input:focus {
   outline: 1px solid var(--focus-input);
 }
 
-.title-dashboard{
+.title-dashboard {
   margin-top: 2rem;
   text-align: center;
 }
 
-.user-email{
+.user-email {
   margin-top: 1rem;
   text-align: center;
 }
@@ -194,4 +202,8 @@ body.dark-mode .password-input {
 
 .logout-btn:hover {
   color: var(--primary);
+}
+
+.pd-top-btm-24 {
+  padding-block: 2rem;
 }

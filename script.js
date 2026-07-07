@@ -11,6 +11,9 @@ const loginBtn = getId("loginBtn");
 const registerBtn = getId("registerBtn");
 const logoutBtn = getId("logoutBtn");
 const userEmail = getId("userEmail");
+const emailError = getId("emailError");
+const passwordError = getId("passwordError");
+const confirmPasswordError = getId("confirmPasswordError");
 
 function getStorage(key) {
   return JSON.parse(localStorage.getItem(key));
@@ -24,6 +27,7 @@ function removeStorage(key) {
   localStorage.removeItem(key);
 }
 
+// dark mode start
 if (localStorage.getItem("darkMode") === "true") {
   document.body.classList.add("dark-mode");
 }
@@ -38,9 +42,16 @@ function toggleDarkMode() {
 if (darkBtn) {
   darkBtn.addEventListener("click", toggleDarkMode);
 }
+// dark mode end
 
 function clearInput(input) {
   input.value = "";
+}
+
+function clearError(input, errorElement) {
+  input.addEventListener("input", () => {
+    errorElement.textContent = "";
+  });
 }
 
 function registerUser(e) {
@@ -51,12 +62,14 @@ function registerUser(e) {
   const passwordValue = registerPassword.value.trim();
   const confirmPasswordValue = registerConfirmPassword.value.trim();
 
-  if (
-    emailValue === "" ||
-    passwordValue === "" ||
-    confirmPasswordValue === ""
-  ) {
+  if (emailValue === "") {
+    emailError.textContent = "Mohon isi Email terlebih dahulu";
     return;
+  } else if (passwordValue === "") {
+    passwordError.textContent = "Mohon isi Password terlebih dahulu";
+    return;
+  } else if (confirmPasswordValue === "") {
+    confirmPasswordError.textContent = "Mohon isi Password terlebih dahulu";
   }
 
   if (passwordValue !== confirmPasswordValue) return;
@@ -75,7 +88,7 @@ function registerUser(e) {
   }
 
   users.push(newUser);
-  console.log(newUser);
+  alert("Akun berhasil dibuat");
   setStorage("users", users);
   clearInput(registerEmail);
   clearInput(registerPassword);
@@ -89,6 +102,14 @@ function loginUser(e) {
   const emailValue = loginEmail.value.trim();
   const passwordValue = loginPassword.value.trim();
 
+  if (emailValue === "") {
+    emailError.textContent = "Mohon isi Email terlebih dahulu";
+    return;
+  } else if (passwordValue === "") {
+    passwordError.textContent = "Mohon isi Password terlebih dahulu";
+    return;
+  }
+
   const user = users.find((user) => {
     return user.email === emailValue && user.password === passwordValue;
   });
@@ -97,7 +118,7 @@ function loginUser(e) {
   clearInput(loginPassword);
 
   if (!user) {
-    alert("Email atau Password salah.");
+    emailError.textContent = "Email atau Password salah, Mohon isi yang benar";
     return;
   }
   setStorage("isLogin", "true");
@@ -123,10 +144,15 @@ if (window.location.pathname.includes("dashboard.html")) {
 
 if (registerForm) {
   registerForm.addEventListener("submit", registerUser);
+  clearError(registerEmail, emailError);
+  clearError(registerPassword, passwordError);
+  clearError(registerConfirmPassword, confirmPasswordError);
 }
 
 if (loginForm) {
   loginForm.addEventListener("submit", loginUser);
+  clearError(loginEmail, emailError);
+  clearError(loginPassword, passwordError);
 }
 
 if (logoutBtn) {
