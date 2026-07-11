@@ -138,6 +138,18 @@ body.dark-mode .password-input {
   outline: 1px solid var(--focus-input);
 }
 
+.email-input:focus.error,
+.password-input:focus.error {
+  border-color: red;
+  outline-color: red;
+}
+
+.email-input:focus.valid,
+.password-input:focus.valid {
+  border-color: green;
+  outline-color: green;
+}
+
 .title-dashboard {
   margin-top: 2rem;
   text-align: center;
@@ -162,6 +174,11 @@ body.dark-mode .password-input {
   font-weight: 600;
   cursor: pointer;
   transition: 0.25s ease;
+}
+
+.btn.btn-primary:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn-primary {

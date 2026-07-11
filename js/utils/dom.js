@@ -1,0 +1,1 @@
+export const getId = (selector) => document.getElementById(selector);
