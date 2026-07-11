@@ -16,7 +16,7 @@ if (window.location.pathname.includes("dashboard.html")) {
   const isLogin = getStorage("isLogin");
 
   if (isLogin !== "true") {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
 
   const currentUser = getStorage("currentUser");
