@@ -63,6 +63,7 @@ function registerUser(e) {
   const newUser = {
     email: emailValue,
     password: passwordValue,
+    id: Date.now(),
   };
 
   const existingUser = users.some((user) => {

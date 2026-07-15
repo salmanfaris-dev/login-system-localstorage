@@ -15,9 +15,17 @@
     </header>
 
     <main class="container">
-      <a href="index.html" id="logoutBtn" class="logout-btn" >Logout</a>
-      <h1 class="title-dashboard">Selamat Datang</h1>
-      <p class="user-email" id="userEmail"></p>
+      <div class="container-space-between margin-top-32">
+        <button id="logoutBtn" class="btn btn-primary">Logout</button>
+        <div class="time-zone">
+          <p id="liveDate" class="live-date"></p>
+          <p id="liveTime" class="live-time"></p>
+        </div>
+      </div>
+      <div>
+        <h1 class="title-dashboard">Selamat Datang</h1>
+        <p class="user-email" id="userEmail"></p>
+      </div>
     </main>
 
     <script type="module" src="js/dashboard.js"></script>

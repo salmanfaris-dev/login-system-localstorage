@@ -74,6 +74,12 @@ body.dark-mode .password-input {
   padding: 0 3rem;
 }
 
+.container-space-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .site-header {
   background-color: var(--white);
   color: var(--dark);
@@ -151,11 +157,13 @@ body.dark-mode .password-input {
 }
 
 .title-dashboard {
+  font-size: 2.5rem;
   margin-top: 2rem;
   text-align: center;
 }
 
 .user-email {
+  font-size: 1.25rem;
   margin-top: 1rem;
   text-align: center;
 }
@@ -168,6 +176,7 @@ body.dark-mode .password-input {
 }
 
 .btn {
+  display: inline-flex;
   border: none;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-pill);
@@ -209,18 +218,14 @@ body.dark-mode .password-input {
   color: var(--primary);
 }
 
-.logout-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  text-decoration: none;
-  color: var(--primary-dark);
-  transition: 0.25s ease;
-}
-
 .logout-btn:hover {
   color: var(--primary);
 }
 
 .pd-top-btm-24 {
   padding-block: 2rem;
+}
+
+.margin-top-32{
+  margin-top: 16px;
 }
