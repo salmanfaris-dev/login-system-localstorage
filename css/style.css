@@ -4,27 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #a5b4fc;
-  --secondary: #ec489a;
-  --dark: #0f172a;
-  --gray-800: #1e293b;
-  --gray-600: #475569;
-  --gray-400: #94a3b8;
-  --gray-200: #e2e8f0;
-  --gray-100: #f1f5f9;
-  --gray-50: #f7f7f7;
-  --white: #ffffff;
-
-  --border-input: #cbd5e1;
-  --focus-input: #3b82f6;
-
-  --radius-sm: 1rem;
-  --radius-pill: 999px;
-}
-
 body {
   min-height: 100vh;
   display: flex;
@@ -35,36 +14,12 @@ body {
   transition: 0.3s ease;
 }
 
-body.dark-mode {
-  background-color: var(--dark);
-  color: var(--white);
+li {
+  list-style: none;
 }
 
-body.dark-mode .site-header {
-  background-color: var(--gray-800);
-  color: var(--white);
-}
-
-body.dark-mode .circle-btn {
-  background-color: var(--white);
-}
-
-body.dark-mode .box-container {
-  background-color: var(--gray-800);
-  color: var(--white);
-}
-
-body.dark-mode .email-container label,
-body.dark-mode .password-container label,
-body.dark-mode .confirm-password-container label {
-  color: var(--white);
-}
-
-body.dark-mode .email-input,
-body.dark-mode .password-input {
-  background-color: var(--dark);
-  color: var(--white);
-  border: 1px solid var(--gray-600);
+a {
+  text-decoration: none;
 }
 
 .container {
@@ -74,7 +29,7 @@ body.dark-mode .password-input {
   padding: 0 3rem;
 }
 
-.container-space-between{
+.container-space-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -185,7 +140,7 @@ body.dark-mode .password-input {
   transition: 0.25s ease;
 }
 
-.btn.btn-primary:disabled{
+.btn.btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -222,10 +177,24 @@ body.dark-mode .password-input {
   color: var(--primary);
 }
 
-.pd-top-btm-24 {
-  padding-block: 2rem;
+@media (max-width: 468px) {
+  .sidebar {
+    width: 48%;
+  }
 }
 
-.margin-top-32{
-  margin-top: 16px;
+@media (max-width: 768px) {
+  .sidebar {
+    width: 40%;
+  }
+}
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 30%;
+  }
+}
+@media (max-width: 1600px) {
+  .sidebar {
+    width: 25%;
+  }
 }

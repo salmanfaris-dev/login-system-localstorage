@@ -1,4 +1,4 @@
-import { getId } from "./utils/dom.js";
+import { getId, selector } from "./utils/dom.js";
 import {
   toggleButtonState,
   clearError,

@@ -1,0 +1,39 @@
+body.dark-mode {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+body.dark-mode .site-header {
+  background-color: var(--gray-800);
+  color: var(--white);
+}
+
+body.dark-mode .circle-btn {
+  background-color: var(--white);
+}
+
+body.dark-mode .box-container {
+  background-color: var(--gray-800);
+  color: var(--white);
+}
+
+body.dark-mode .hamburger span {
+  background-color: var(--white);
+}
+
+body.dark-mode .sidebar {
+  background-color: var(--gray-800);
+}
+
+body.dark-mode .email-container label,
+body.dark-mode .password-container label,
+body.dark-mode .confirm-password-container label {
+  color: var(--white);
+}
+
+body.dark-mode .email-input,
+body.dark-mode .password-input {
+  background-color: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--gray-600);
+}

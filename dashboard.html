@@ -3,16 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/hamburger.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/utilities.css" />
     <title>Fake-Login</title>
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
         <span>Sals.Id</span>
-        <button id="darkBtn" class="circle-btn">🌙</button>
+        <button class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
+
+    <div class="overlay"></div>
+
+    <aside class="sidebar">
+      <h2 class="sidebar-title">menu</h2>
+      <nav>
+        <ul class="menu">
+          <li class="menu-item"><a id="darkBtn" href="">Dark mode</a></li>
+          <li class="menu-item"><a href="">halo</a></li>
+          <li class="menu-item"><a href="">halo</a></li>
+          <li class="menu-item"><a href="">halo</a></li>
+        </ul>
+      </nav>
+    </aside>
 
     <main class="container">
       <div class="container-space-between margin-top-32">
