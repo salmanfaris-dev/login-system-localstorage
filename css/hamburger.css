@@ -16,7 +16,7 @@
   height: 3px;
   background-color: var(--dark);
   border-radius: 0.75rem;
-  transition: 0.25s ease;
+  transition: var(--transition);
 }
 
 .hamburger.active span:nth-child(1) {
@@ -38,7 +38,8 @@
   opacity: 0;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.4);
-  transition: 0.25s ease;
+  transition: var(--transition);
+  z-index: 90;
 }
 
 .overlay.show {
@@ -51,10 +52,11 @@
   position: fixed;
   top: 0;
   transform: translateX(-100%);
+  width: clamp(200px, 35vw, 350px);
   height: 100vh;
   padding: 2rem 1.5rem;
   background-color: var(--gray-100);
-  transition: 0.25s ease;
+  transition: var(--transition);
   z-index: 100;
 }
 
@@ -63,17 +65,50 @@
 }
 
 .sidebar-title {
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
-.menu-item {
+.wrapper-item {
   padding: 1rem 0;
   color: var(--gray-600);
   font-size: 1.125rem;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
-.menu-item:hover {
-  padding-left: 0.5rem;
+.menu-item {
+  border-bottom: 1px solid var(--gray-600);
+  padding-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.setting-label {
+  color: var(--dark);
+}
+
+.toggle-box {
+  width: 3.25rem;
+  height: 1.75rem;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background-color: var(--gray-400);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle-box.active {
+  background-color: #4caf50;
+}
+
+.toggle-box.active .toggle-circle {
+  transform: translateX(24px);
+}
+
+.toggle-circle {
+  display: block;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--white);
+  transition: var(--transition);
 }

@@ -1,6 +1,6 @@
-import { getId, selector } from "./utils/dom.js";
-import { getStorage, setStorage, removeStorage } from "./utils/storage.js";
-import { darkModeButton } from "./utils/darkmode.js";
+import { getId, selector, addEvent } from "./utils/dom.js";
+import { getStorage, removeStorage } from "./utils/storage.js";
+import { initDarkMode } from "./utils/darkmode.js";
 
 const logoutBtn = getId("logoutBtn");
 const userEmail = getId("userEmail");
@@ -10,12 +10,19 @@ const liveTime = getId("liveTime");
 const hamburger = selector(".hamburger");
 const overlay = selector(".overlay");
 const sidebar = selector(".sidebar");
+const toggleBtn = selector(".toggle-box");
+const menuDarkMode = selector(".menu-dark-mode");
 
-darkModeButton();
+initDarkMode();
+
+if (getStorage("darkMode") === true) {
+  toggleBtn.classList.add("active");
+}
 
 function logoutUser() {
   removeStorage("isLogin");
   removeStorage("currentUser");
+  window.location.href = "index.html";
 }
 
 function updateLiveTime() {
@@ -37,21 +44,23 @@ function toggleMenu() {
   sidebar.classList.toggle("show");
 }
 
-hamburger.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
-
-if (window.location.pathname.includes("dashboard.html")) {
-  const isLogin = getStorage("isLogin");
-
-  if (isLogin !== "true") {
-    window.location.href = "index.html";
-  }
-
-  const currentUser = getStorage("currentUser");
-  userEmail.textContent = currentUser;
+function darkModeHamburger() {
+  toggleBtn.classList.toggle("active");
 }
+
+const isLogin = getStorage("isLogin");
+
+if (isLogin !== "true") {
+  window.location.href = "index.html";
+}
+
+const currentUser = getStorage("currentUser");
+userEmail.textContent = currentUser;
 
 if (logoutBtn) {
-  logoutBtn.addEventListener("click", logoutUser);
+  addEvent(logoutBtn, "click", logoutUser);
 }
 
+addEvent(hamburger, "click", toggleMenu);
+addEvent(overlay, "click", toggleMenu);
+addEvent(menuDarkMode, "click", darkModeHamburger);

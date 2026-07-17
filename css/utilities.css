@@ -1,3 +1,9 @@
+.container-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .pd-top-btm-24 {
   padding-block: 2rem;
 }

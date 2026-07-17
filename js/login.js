@@ -1,4 +1,4 @@
-import { getId, selector } from "./utils/dom.js";
+import { getId, selector, addEvent } from "./utils/dom.js";
 import {
   toggleButtonState,
   clearError,
@@ -6,8 +6,8 @@ import {
   inputError,
   inputValid,
 } from "./utils/validation.js";
-import { getStorage, setStorage, removeStorage } from "./utils/storage.js";
-import { darkModeButton } from "./utils/darkmode.js";
+import { getStorage, setStorage } from "./utils/storage.js";
+import { initDarkMode} from "./utils/darkmode.js";
 
 const loginForm = getId("loginForm");
 const loginEmail = getId("loginEmail");
@@ -17,7 +17,7 @@ const loginInputs = [loginEmail, loginPassword];
 const emailError = getId("emailError");
 const passwordError = getId("passwordError");
 
-darkModeButton();
+initDarkMode();
 
 function loginUser(e) {
   e.preventDefault();
@@ -55,7 +55,7 @@ function loginUser(e) {
 
 if (loginForm) {
   toggleButtonState(loginInputs, loginBtn);
-  loginForm.addEventListener("submit", loginUser);
+  addEvent(loginForm, "submit", loginUser)
   clearError(loginEmail, emailError);
   clearError(loginPassword, passwordError);
 }

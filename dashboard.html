@@ -14,7 +14,7 @@
     <header class="site-header">
       <div class="container header-inner">
         <span>Sals.Id</span>
-        <button class="hamburger">
+        <button class="hamburger" aria-label="Open menu">
           <span></span>
           <span></span>
           <span></span>
@@ -28,10 +28,29 @@
       <h2 class="sidebar-title">menu</h2>
       <nav>
         <ul class="menu">
-          <li class="menu-item"><a id="darkBtn" href="">Dark mode</a></li>
-          <li class="menu-item"><a href="">halo</a></li>
-          <li class="menu-item"><a href="">halo</a></li>
-          <li class="menu-item"><a href="">halo</a></li>
+          <li class="wrapper-item">
+            <div
+              id="darkBtn"
+              class="menu-dark-mode menu-item container-space-between"
+            >
+              <span class="setting-label">Dark Mode</span>
+              <button type="button" class="toggle-box">
+                <span class="toggle-circle"></span>
+              </button>
+            </div>
+          </li>
+
+          <li class="wrapper-item">
+            <div class="menu-item"></div>
+          </li>
+
+          <li class="wrapper-item">
+            <div class="menu-item"></div>
+          </li>
+
+          <li class="wrapper-item">
+            <div class="menu-item"></div>
+          </li>
         </ul>
       </nav>
     </aside>

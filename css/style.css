@@ -11,7 +11,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--gray-100);
   color: var(--dark);
-  transition: 0.3s ease;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 }
 
 li {
@@ -27,12 +29,6 @@ a {
   max-width: 1200px;
   margin-inline: auto;
   padding: 0 3rem;
-}
-
-.container-space-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .site-header {
@@ -175,26 +171,4 @@ a {
 
 .logout-btn:hover {
   color: var(--primary);
-}
-
-@media (max-width: 468px) {
-  .sidebar {
-    width: 48%;
-  }
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 40%;
-  }
-}
-@media (max-width: 1200px) {
-  .sidebar {
-    width: 30%;
-  }
-}
-@media (max-width: 1600px) {
-  .sidebar {
-    width: 25%;
-  }
 }

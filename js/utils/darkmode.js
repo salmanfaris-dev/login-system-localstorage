@@ -1,10 +1,10 @@
-import { getId } from "./dom.js";
-import { setStorage } from "./storage.js";
-const darkBtn = getId("darkBtn")
+import { getId, addEvent } from "./dom.js";
+import { setStorage, getStorage} from "./storage.js";
+const darkBtn = getId("darkBtn");
 
 // dark mode start
-export function darkModeButton() {
-  if (localStorage.getItem("darkMode") === "true") {
+export function initDarkMode() {
+  if (getStorage("darkMode") === true) {
     document.body.classList.add("dark-mode");
   }
 
@@ -16,7 +16,7 @@ export function darkModeButton() {
   }
 
   if (darkBtn) {
-    darkBtn.addEventListener("click", toggleDarkMode);
+    addEvent(darkBtn, "click", toggleDarkMode);
   }
 }
 // dark mode end

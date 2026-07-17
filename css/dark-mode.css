@@ -21,6 +21,10 @@ body.dark-mode .hamburger span {
   background-color: var(--white);
 }
 
+body.dark-mode .setting-label {
+  color: var(--gray-100);
+}
+
 body.dark-mode .sidebar {
   background-color: var(--gray-800);
 }

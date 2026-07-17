@@ -17,4 +17,6 @@
 
   --radius-sm: 1rem;
   --radius-pill: 999px;
+
+  --transition: 0.3s ease;
 }
