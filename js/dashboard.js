@@ -1,4 +1,4 @@
-import { getId, selector, addEvent } from "./utils/dom.js";
+import { getId, selector, addEvent, createElement } from "./utils/dom.js";
 import { getStorage, removeStorage } from "./utils/storage.js";
 import { initDarkMode } from "./utils/darkmode.js";
 
@@ -12,6 +12,16 @@ const overlay = selector(".overlay");
 const sidebar = selector(".sidebar");
 const toggleBtn = selector(".toggle-box");
 const menuDarkMode = selector(".menu-dark-mode");
+
+const menuViewAccount = getId("menuViewAccount");
+
+const btnBack = getId("btnBack");
+const listAccount = getId("listAccount");
+const dashboardSection = getId("dashboard-section");
+const viewAccountSection = getId("view-account-section");
+
+const sections = [dashboardSection, viewAccountSection];
+const users = getStorage("users");
 
 initDarkMode();
 
@@ -44,8 +54,32 @@ function toggleMenu() {
   sidebar.classList.toggle("show");
 }
 
+function closeSidebar() {
+  sidebar.classList.remove("show");
+  overlay.classList.remove("show");
+}
+
+function navigateTo(section) {
+  closeSidebar();
+  showSection(section);
+}
+
 function darkModeHamburger() {
   toggleBtn.classList.toggle("active");
+}
+
+function showSection(activeSection) {
+  sections.forEach((section) => {
+    section.hidden = true;
+  });
+  activeSection.hidden = false;
+}
+
+function createUserElement(user) {
+  const li = createElement("li");
+  li.textContent = `${user.email}`;
+  li.classList.add("margin-top-16");
+  return li;
 }
 
 const isLogin = getStorage("isLogin");
@@ -61,6 +95,13 @@ if (logoutBtn) {
   addEvent(logoutBtn, "click", logoutUser);
 }
 
+users.forEach((user) => {
+  const li = createUserElement(user);
+  listAccount.appendChild(li);
+});
+
 addEvent(hamburger, "click", toggleMenu);
 addEvent(overlay, "click", toggleMenu);
 addEvent(menuDarkMode, "click", darkModeHamburger);
+addEvent(menuViewAccount, "click", () => navigateTo(viewAccountSection));
+addEvent(btnBack, "click", () => showSection(dashboardSection));

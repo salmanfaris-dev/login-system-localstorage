@@ -81,8 +81,13 @@
   transition: var(--transition);
 }
 
-.setting-label {
+.menu-label {
   color: var(--dark);
+  transition: var(--transition);
+}
+
+.menu-label:active {
+  transform: translateY(3px);
 }
 
 .toggle-box {

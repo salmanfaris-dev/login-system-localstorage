@@ -21,7 +21,7 @@ body.dark-mode .hamburger span {
   background-color: var(--white);
 }
 
-body.dark-mode .setting-label {
+body.dark-mode .menu-label {
   color: var(--gray-100);
 }
 

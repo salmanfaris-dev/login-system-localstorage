@@ -33,7 +33,7 @@
               id="darkBtn"
               class="menu-dark-mode menu-item container-space-between"
             >
-              <span class="setting-label">Dark Mode</span>
+              <span class="menu-label">Dark Mode</span>
               <button type="button" class="toggle-box">
                 <span class="toggle-circle"></span>
               </button>
@@ -41,7 +41,9 @@
           </li>
 
           <li class="wrapper-item">
-            <div class="menu-item"></div>
+            <div id="menuViewAccount" class="menu-item">
+              <span class="menu-label">View account</span>
+            </div>
           </li>
 
           <li class="wrapper-item">
@@ -56,17 +58,26 @@
     </aside>
 
     <main class="container">
-      <div class="container-space-between margin-top-32">
-        <button id="logoutBtn" class="btn btn-primary">Logout</button>
-        <div class="time-zone">
-          <p id="liveDate" class="live-date"></p>
-          <p id="liveTime" class="live-time"></p>
+      <section id="dashboard-section" class="dashboard">
+        <div class="container-space-between margin-top-32">
+          <button id="logoutBtn" class="btn btn-primary">Logout</button>
+          <div class="time-zone">
+            <p id="liveDate" class="live-date"></p>
+            <p id="liveTime" class="live-time"></p>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 class="title-dashboard">Selamat Datang</h1>
-        <p class="user-email" id="userEmail"></p>
-      </div>
+        <div>
+          <h1 class="title-dashboard">Selamat Datang</h1>
+          <p class="user-email" id="userEmail"></p>
+        </div>
+      </section>
+      <section id="view-account-section" class="view-account" hidden>
+        <div class="margin-top-16">
+          <button id="btnBack" class="btn-back">Back</button>
+        </div>
+        <h2 class="margin-top-48">View account</h2>
+        <ul id="listAccount" class="list-account"></ul>
+      </section>
     </main>
 
     <script type="module" src="js/dashboard.js"></script>
