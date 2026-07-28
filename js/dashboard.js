@@ -122,11 +122,14 @@ function editEmail(e) {
     }
     user.email = newEmailValue;
     setStorage("currentUser", user.email);
+    alert("Email berhasil diubah")
   } else {
     alert("Masukkan email anda saat ini!");
   }
 
   setStorage("users", users);
+  currentEmail.value = "";
+  newEmail.value = "";
 }
 
 addEvent(hamburger, "click", toggleMenu);
