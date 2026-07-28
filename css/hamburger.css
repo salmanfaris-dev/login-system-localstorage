@@ -82,6 +82,7 @@
 }
 
 .menu-label {
+  display: inline-block;
   color: var(--dark);
   transition: var(--transition);
 }
@@ -116,4 +117,9 @@
   border-radius: var(--radius-pill);
   background-color: var(--white);
   transition: var(--transition);
+}
+
+.button-save-container {
+  display: flex;
+  justify-content: flex-end;
 }

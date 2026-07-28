@@ -28,7 +28,7 @@ a {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding: 0 3rem;
+  padding: 0 clamp(1rem, 5vw, 3rem);
 }
 
 .site-header {
@@ -40,7 +40,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 3rem;
+  padding: 2rem clamp(1rem, 5vw, 3rem);
 }
 
 .box-position {
@@ -141,15 +141,15 @@ a {
   border: none;
   background: transparent;
   color: var(--primary);
-  font-size: 1.25rem;  
+  font-size: 1.25rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.25s ease;
 }
 
-.btn-back:hover{
+.btn-back:hover {
   transform: translateX(3px);
-  color: var(--primary-dark)
+  color: var(--primary-dark);
 }
 
 .btn.btn-primary:disabled {

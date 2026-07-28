@@ -41,13 +41,15 @@
           </li>
 
           <li class="wrapper-item">
-            <div id="menuViewAccount" class="menu-item">
+            <div id="menu-view-account" class="menu-item">
               <span class="menu-label">View account</span>
             </div>
           </li>
 
           <li class="wrapper-item">
-            <div class="menu-item"></div>
+            <div id="menu-edit-email" class="menu-item">
+              <span class="menu-label">Edit Email</span>
+            </div>
           </li>
 
           <li class="wrapper-item">
@@ -78,6 +80,23 @@
         <h2 class="margin-top-48">View account</h2>
         <ul id="listAccount" class="list-account"></ul>
       </section>
+      <section id="edit-email-section" class="edit-email" hidden>
+        <form id="formEditEmail">
+          <div class="email-container margin-top-48">
+            <label for="currentEmail">Current Email</label>
+            <input type="email" id="currentEmail" class="email-input" />
+          </div>
+          <div class="email-container margin-top-32">
+            <label for="newEmail">New Email</label>
+            <input type="email" id="newEmail" class="email-input" />
+          </div>
+          <div class="button-save-container">
+            <button type="submit" class="btn btn-primary margin-top-32">Save</button>
+          </div>
+        </form>
+      </section>
+      <section></section>
+      <section></section>
     </main>
 
     <script type="module" src="js/dashboard.js"></script>
