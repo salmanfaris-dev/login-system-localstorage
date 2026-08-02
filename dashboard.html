@@ -53,7 +53,15 @@
           </li>
 
           <li class="wrapper-item">
-            <div class="menu-item"></div>
+            <div id="menu-edit-password" class="menu-item">
+              <span class="menu-label">Edit Password</span>
+            </div>
+          </li>
+
+          <li class="wrapper-item">
+            <div class="menu-item">
+              <span class="menu-label"></span>
+            </div>
           </li>
         </ul>
       </nav>
@@ -82,20 +90,42 @@
       </section>
       <section id="edit-email-section" class="edit-email" hidden>
         <form id="formEditEmail">
-          <div class="email-container margin-top-48">
+          <div class="input-container margin-top-48">
             <label for="currentEmail">Current Email</label>
-            <input type="email" id="currentEmail" class="email-input" />
+            <input type="email" id="currentEmail" class="box-input" />
+            <small id="currentEmailError" class="error-text"></small>
           </div>
-          <div class="email-container margin-top-32">
+          <div class="input-container margin-top-32">
             <label for="newEmail">New Email</label>
-            <input type="email" id="newEmail" class="email-input" />
+            <input type="email" id="newEmail" class="box-input" />
+            <small id="newEmailError" class="error-text"></small>
           </div>
           <div class="button-save-container">
-            <button type="submit" class="btn btn-primary margin-top-32">Save</button>
+            <button type="submit" id="edit-email-btn" class="btn btn-primary margin-top-32">
+              Save
+            </button>
           </div>
         </form>
       </section>
-      <section></section>
+      <section id="edit-password-section" class="edit-password" hidden>
+        <form id="formEditPassword">
+          <div class="input-container margin-top-48">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" class="box-input" />
+            <small id="currentPasswordError" class="error-text"></small>
+          </div>
+          <div class="input-container margin-top-32">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" class="box-input" />
+            <small id="newPasswordError" class="error-text"></small>
+          </div>
+          <div class="button-save-container margin-top-16">
+            <button type="submit" id="edit-password-btn" class="btn btn-primary margin-top-32">
+              Save
+            </button>
+          </div>
+        </form>
+      </section>
       <section></section>
     </main>
 

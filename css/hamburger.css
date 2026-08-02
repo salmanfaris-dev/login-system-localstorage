@@ -82,7 +82,7 @@
 }
 
 .menu-label {
-  display: inline-block;
+  display: block;
   color: var(--dark);
   transition: var(--transition);
 }

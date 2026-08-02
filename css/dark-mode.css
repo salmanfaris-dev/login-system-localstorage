@@ -29,14 +29,11 @@ body.dark-mode .sidebar {
   background-color: var(--gray-800);
 }
 
-body.dark-mode .email-container label,
-body.dark-mode .password-container label,
-body.dark-mode .confirm-password-container label {
+body.dark-mode .input-container label {
   color: var(--white);
 }
 
-body.dark-mode .email-input,
-body.dark-mode .password-input {
+body.dark-mode .box-input {
   background-color: var(--dark);
   color: var(--white);
   border: 1px solid var(--gray-600);

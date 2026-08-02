@@ -1,14 +1,32 @@
 import { getId, selector, addEvent, createElement } from "./utils/dom.js";
 import { getStorage, removeStorage, setStorage } from "./utils/storage.js";
 import { initDarkMode } from "./utils/darkmode.js";
+import {
+  clearError,
+  clearInput,
+  inputError,
+  toggleButtonState,
+} from "./utils/validation.js";
 
 const logoutBtn = getId("logoutBtn");
 const userEmail = getId("userEmail");
 const liveDate = getId("liveDate");
 const liveTime = getId("liveTime");
 const formEditEmail = getId("formEditEmail");
+const formEditPassword = getId("formEditPassword");
+
 const currentEmail = getId("currentEmail");
 const newEmail = getId("newEmail");
+const currentPassword = getId("currentPassword");
+const newPassword = getId("newPassword");
+
+const editEmailInputs = [currentEmail, newEmail];
+const editPasswordInputs = [currentPassword, newPassword];
+
+const currentEmailError = getId("currentEmailError");
+const newEmailError = getId("newEmailError");
+const currentPasswordError = getId("currentPasswordError");
+const newPasswordError = getId("newPasswordError");
 
 const hamburger = selector(".hamburger");
 const overlay = selector(".overlay");
@@ -17,14 +35,24 @@ const toggleBtn = selector(".toggle-box");
 const menuDarkMode = selector(".menu-dark-mode");
 const menuViewAccount = getId("menu-view-account");
 const menuEditEmail = getId("menu-edit-email");
+const menuEditPassword = getId("menu-edit-password");
 
 const btnBack = getId("btnBack");
 const listAccount = getId("listAccount");
 const dashboardSection = getId("dashboard-section");
 const viewAccountSection = getId("view-account-section");
 const editEmailSection = getId("edit-email-section");
+const editPasswordSection = getId("edit-password-section");
 
-const sections = [dashboardSection, viewAccountSection, editEmailSection];
+const editEmailBtn = getId("edit-email-btn");
+const editPasswordBtn = getId("edit-password-btn");
+
+const sections = [
+  dashboardSection,
+  viewAccountSection,
+  editEmailSection,
+  editPasswordSection,
+];
 const users = getStorage("users");
 
 initDarkMode();
@@ -47,7 +75,7 @@ if (isLogin !== "true") {
 }
 
 const currentUser = getStorage("currentUser");
-userEmail.textContent = currentUser;
+userEmail.textContent = currentUser.email;
 
 if (logoutBtn) {
   addEvent(logoutBtn, "click", logoutUser);
@@ -112,30 +140,64 @@ function editEmail(e) {
   e.preventDefault();
   const currentEmailValue = currentEmail.value.trim();
   const newEmailValue = newEmail.value.trim();
-  const currentUser = getStorage("currentUser");
 
-  if (currentEmailValue === currentUser) {
-    const user = users.find((user) => user.email === currentEmailValue);
-    if (!user) {
-      alert("Masukkan Email anda saat ini!");
-      return;
-    }
+  const user = users.find((user) => user.email === currentEmailValue);
+  if (!user) {
+    currentEmailError.textContent = "Masukkan Email yang sedang Anda gunakan";
+    inputError(currentEmail);
+    return;
+  } else if (currentUser.email === currentEmailValue) {
     user.email = newEmailValue;
-    setStorage("currentUser", user.email);
-    alert("Email berhasil diubah")
-  } else {
-    alert("Masukkan email anda saat ini!");
+    currentUser.email = newEmailValue;
+    alert("Email berhasil diubah");
+  }
+  setStorage("currentUser", currentUser);
+  setStorage("users", users);
+  clearInput(currentEmail);
+  clearInput(newEmail);
+}
+
+function editPassword(e) {
+  e.preventDefault();
+  const currentPasswordValue = currentPassword.value.trim();
+  const newPasswordValue = newPassword.value.trim();
+
+  const user = users.find((user) => user.password === currentPasswordValue);
+  if (!user) {
+    currentPasswordError.textContent =
+      "Masukkan Password yang sedang Anda gunakan";
+    inputError(currentPassword);
+    return;
+  } else if (newPasswordValue.length < 8) {
+    newPasswordError.textContent = "Password minimal 8 karakter";
+    inputError(newPassword);
+    return;
+  } else if (currentUser.password === currentPasswordValue) {
+    user.password = newPasswordValue;
+    currentUser.password = newPasswordValue;
+    alert("Password berhasil diubah");
   }
 
+  setStorage("currentUser", currentUser);
   setStorage("users", users);
-  currentEmail.value = "";
-  newEmail.value = "";
+  clearInput(currentPassword);
+  clearInput(newPassword);
 }
+
+toggleButtonState(editEmailInputs, editEmailBtn);
+toggleButtonState(editPasswordInputs, editPasswordBtn);
+
+clearError(currentEmail, currentEmailError);
+clearError(newEmail, newEmailError);
+clearError(currentPassword, currentPasswordError);
+clearError(newPassword, newPasswordError);
 
 addEvent(hamburger, "click", toggleMenu);
 addEvent(overlay, "click", toggleMenu);
-addEvent(btnBack, "click", () => showSection(dashboardSection));
 addEvent(menuDarkMode, "click", darkModeHamburger);
+addEvent(btnBack, "click", () => showSection(dashboardSection));
 addEvent(menuViewAccount, "click", () => navigateTo(viewAccountSection));
 addEvent(menuEditEmail, "click", () => navigateTo(editEmailSection));
+addEvent(menuEditPassword, "click", () => navigateTo(editPasswordSection));
 addEvent(formEditEmail, "submit", editEmail);
+addEvent(formEditPassword, "submit", editPassword);

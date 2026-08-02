@@ -49,7 +49,7 @@ function loginUser(e) {
     return;
   }
   setStorage("isLogin", "true");
-  setStorage("currentUser", emailValue);
+  setStorage("currentUser", {email: emailValue, password: passwordValue});
   window.location.href = "dashboard.html";
 }
 
