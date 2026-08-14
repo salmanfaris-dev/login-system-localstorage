@@ -2,7 +2,7 @@ import { getId, selector, addEvent, createElement } from "./utils/dom.js";
 import { getStorage, removeStorage, setStorage } from "./utils/storage.js";
 import { initDarkMode } from "./utils/darkmode.js";
 import {
-  clearError,
+  clearErrorText,
   clearInput,
   inputError,
   toggleButtonState,
@@ -38,6 +38,8 @@ const menuEditEmail = getId("menu-edit-email");
 const menuEditPassword = getId("menu-edit-password");
 
 const btnBack = getId("btnBack");
+const btnDeleteAccount = getId("btnDeleteAccount");
+
 const listAccount = getId("listAccount");
 const dashboardSection = getId("dashboard-section");
 const viewAccountSection = getId("view-account-section");
@@ -54,6 +56,7 @@ const sections = [
   editPasswordSection,
 ];
 const users = getStorage("users");
+const currentUser = getStorage("currentUser");
 
 initDarkMode();
 
@@ -74,7 +77,6 @@ if (isLogin !== "true") {
   window.location.href = "index.html";
 }
 
-const currentUser = getStorage("currentUser");
 userEmail.textContent = currentUser.email;
 
 if (logoutBtn) {
@@ -125,7 +127,16 @@ function showSection(activeSection) {
 // view account
 function createUserElement(user) {
   const li = createElement("li");
-  li.textContent = `${user.email}`;
+  const listEmail = createElement("span");
+  const infoEmail = createElement("span");
+  listEmail.textContent = `${user.email}`;
+  li.appendChild(listEmail);
+
+  if (currentUser.email === user.email) {
+    infoEmail.textContent = "⬅️ Current Email";
+    infoEmail.classList.add("margin-left-32");
+    li.appendChild(infoEmail);
+  }
   li.classList.add("margin-top-16");
   return li;
 }
@@ -134,6 +145,14 @@ users.forEach((user) => {
   const li = createUserElement(user);
   listAccount.appendChild(li);
 });
+
+function deleteAccount() {
+  const updatedUsers = users.filter((user) => user.email !== currentUser.email);
+  
+  setStorage("users", updatedUsers);
+  alert("Akun Anda berhasil dihapus!");
+  logoutUser();
+}
 
 // edit email
 function editEmail(e) {
@@ -149,14 +168,17 @@ function editEmail(e) {
   } else if (currentUser.email === currentEmailValue) {
     user.email = newEmailValue;
     currentUser.email = newEmailValue;
+
+    setStorage("currentUser", currentUser);
+    setStorage("users", users);
+
     alert("Email berhasil diubah");
   }
-  setStorage("currentUser", currentUser);
-  setStorage("users", users);
   clearInput(currentEmail);
   clearInput(newEmail);
 }
 
+// edit password
 function editPassword(e) {
   e.preventDefault();
   const currentPasswordValue = currentPassword.value.trim();
@@ -175,11 +197,13 @@ function editPassword(e) {
   } else if (currentUser.password === currentPasswordValue) {
     user.password = newPasswordValue;
     currentUser.password = newPasswordValue;
+
+    setStorage("currentUser", currentUser);
+    setStorage("users", users);
+
     alert("Password berhasil diubah");
   }
 
-  setStorage("currentUser", currentUser);
-  setStorage("users", users);
   clearInput(currentPassword);
   clearInput(newPassword);
 }
@@ -187,16 +211,27 @@ function editPassword(e) {
 toggleButtonState(editEmailInputs, editEmailBtn);
 toggleButtonState(editPasswordInputs, editPasswordBtn);
 
-clearError(currentEmail, currentEmailError);
-clearError(newEmail, newEmailError);
-clearError(currentPassword, currentPasswordError);
-clearError(newPassword, newPasswordError);
+addEvent(currentEmail, "input", () => {
+  clearErrorText(currentEmail, currentEmailError);
+});
+addEvent(newEmail, "input", () => {
+  clearErrorText(newEmail, newEmailError);
+});
+addEvent(currentPassword, "input", () => {
+  clearErrorText(currentPassword, currentPasswordError);
+});
+addEvent(newPassword, "input", () => {
+  clearErrorText(newPassword, newPasswordError);
+});
 
 addEvent(hamburger, "click", toggleMenu);
 addEvent(overlay, "click", toggleMenu);
 addEvent(menuDarkMode, "click", darkModeHamburger);
-addEvent(btnBack, "click", () => showSection(dashboardSection));
+
 addEvent(menuViewAccount, "click", () => navigateTo(viewAccountSection));
+addEvent(btnBack, "click", () => showSection(dashboardSection));
+addEvent(btnDeleteAccount, "click", deleteAccount);
+
 addEvent(menuEditEmail, "click", () => navigateTo(editEmailSection));
 addEvent(menuEditPassword, "click", () => navigateTo(editPasswordSection));
 addEvent(formEditEmail, "submit", editEmail);

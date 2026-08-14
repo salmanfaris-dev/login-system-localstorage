@@ -119,7 +119,7 @@
   transition: var(--transition);
 }
 
-.button-save-container {
+.button-right-position {
   display: flex;
   justify-content: flex-end;
 }

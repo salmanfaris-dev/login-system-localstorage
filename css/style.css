@@ -83,7 +83,7 @@ a {
   outline: 1px solid var(--focus-input);
 }
 
-.box-input:focus.error{
+.box-input:focus.error {
   border-color: red;
   outline-color: red;
 }
@@ -100,7 +100,6 @@ a {
   margin-left: 1rem;
   color: red;
 }
-
 
 .title-dashboard {
   font-size: 2.5rem;
@@ -160,6 +159,15 @@ a {
 
 .btn-primary:hover {
   background-color: var(--primary);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger-dark);
 }
 
 .circle-btn {

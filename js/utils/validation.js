@@ -15,12 +15,10 @@ function clearInput(input) {
   input.value = "";
 }
 
-function clearError(input, errorElement) {
-  input.addEventListener("input", () => {
+function clearErrorText(input, errorElement) {
     errorElement.textContent = "";
     input.classList.remove("error");
     input.classList.remove("valid");
-  });
 }
 
 function inputError(input) {
@@ -33,4 +31,4 @@ function inputValid(input) {
   input.classList.remove("error");
 }
 
-export { toggleButtonState, clearError, clearInput, inputError, inputValid };
+export { toggleButtonState, clearErrorText, clearInput, inputError, inputValid };

@@ -1,13 +1,13 @@
 import { getId, selector, addEvent } from "./utils/dom.js";
 import {
   toggleButtonState,
-  clearError,
+  clearErrorText,
   clearInput,
   inputError,
   inputValid,
 } from "./utils/validation.js";
 import { getStorage, setStorage } from "./utils/storage.js";
-import { initDarkMode} from "./utils/darkmode.js";
+import { initDarkMode } from "./utils/darkmode.js";
 
 const loginForm = getId("loginForm");
 const loginEmail = getId("loginEmail");
@@ -36,26 +36,34 @@ function loginUser(e) {
     return;
   }
 
-  const user = users.find((user) => {
-    return user.email === emailValue && user.password === passwordValue;
-  });
+  const userEmail = users.find((user) => user.email === emailValue);
+  const userPassword = users.find((user) => user.password === passwordValue);
 
-  clearInput(loginEmail);
-  clearInput(loginPassword);
-
-  if (!user) {
+  if (!userEmail) {
     inputError(loginEmail);
-    emailError.textContent = "Email atau Password salah, Mohon isi yang benar";
+    emailError.textContent = "Email belum terdaftar";
     return;
+  } else if (!userPassword) {
+    inputError(loginPassword);
+    passwordError.textContent = "Password salah, silahkan coba lagi";
+  } else if (userEmail && userPassword) {
+    clearInput(loginEmail);
+    clearInput(loginPassword);
+
+    setStorage("isLogin", "true");
+    setStorage("currentUser", { email: emailValue, password: passwordValue });
+    window.location.href = "dashboard.html";
   }
-  setStorage("isLogin", "true");
-  setStorage("currentUser", {email: emailValue, password: passwordValue});
-  window.location.href = "dashboard.html";
 }
 
 if (loginForm) {
   toggleButtonState(loginInputs, loginBtn);
-  addEvent(loginForm, "submit", loginUser)
-  clearError(loginEmail, emailError);
-  clearError(loginPassword, passwordError);
+  addEvent(loginForm, "submit", loginUser);
+
+  addEvent(loginEmail, "input", () => {
+    clearErrorText(loginEmail, emailError);
+  });
+  addEvent(loginPassword, "input", () => {
+    clearErrorText(loginPassword, passwordError);
+  });
 }

@@ -1,7 +1,7 @@
 import { getId, selector, addEvent } from "./utils/dom.js";
 import {
   toggleButtonState,
-  clearError,
+  clearErrorText,
   clearInput,
   inputError,
   inputValid,
@@ -79,15 +79,24 @@ function registerUser(e) {
   users.push(newUser);
   alert("Akun berhasil dibuat");
   setStorage("users", users);
+
   clearInput(registerEmail);
   clearInput(registerPassword);
   clearInput(registerConfirmPassword);
+
+  clearErrorTextSubmit();
 }
 
 if (registerForm) {
   toggleButtonState(registerInputs, registerBtn);
   addEvent(registerForm, "submit", registerUser);
-  clearError(registerEmail, emailError);
-  clearError(registerPassword, passwordError);
-  clearError(registerConfirmPassword, confirmPasswordError);
+  addEvent(registerEmail, "input", () => {
+    clearErrorText(registerEmail, emailError);
+  });
+  addEvent(registerPassword, "input", () => {
+    clearErrorText(registerPassword, passwordError);
+  });
+  addEvent(registerConfirmPassword, "input", () => {
+    clearErrorText(registerConfirmPassword, confirmPasswordError);
+  });
 }
