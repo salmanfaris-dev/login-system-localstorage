@@ -101,18 +101,6 @@ a {
   color: red;
 }
 
-.title-dashboard {
-  font-size: 2.5rem;
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.user-email {
-  font-size: 1.25rem;
-  margin-top: 1rem;
-  text-align: center;
-}
-
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -168,6 +156,16 @@ a {
 
 .btn-danger:hover {
   background-color: var(--color-danger-dark);
+}
+
+.btn-outline {
+  border: 1px solid var(--primary);
+  background-color: var(--white);
+  color: var(--dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-outline-hover);
 }
 
 .circle-btn {

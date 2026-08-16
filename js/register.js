@@ -77,14 +77,17 @@ function registerUser(e) {
   }
 
   users.push(newUser);
-  alert("Akun berhasil dibuat");
   setStorage("users", users);
 
   clearInput(registerEmail);
   clearInput(registerPassword);
   clearInput(registerConfirmPassword);
 
-  clearErrorTextSubmit();
+  clearErrorText(registerEmail, emailError);
+  clearErrorText(registerPassword, passwordError);
+  clearErrorText(registerConfirmPassword, confirmPasswordError);
+
+  alert("Akun berhasil dibuat");
 }
 
 if (registerForm) {

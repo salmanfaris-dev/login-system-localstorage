@@ -8,7 +8,6 @@ import {
   toggleButtonState,
 } from "./utils/validation.js";
 
-const logoutBtn = getId("logoutBtn");
 const userEmail = getId("userEmail");
 const liveDate = getId("liveDate");
 const liveTime = getId("liveTime");
@@ -31,14 +30,27 @@ const newPasswordError = getId("newPasswordError");
 const hamburger = selector(".hamburger");
 const overlay = selector(".overlay");
 const sidebar = selector(".sidebar");
+
 const toggleBtn = selector(".toggle-box");
 const menuDarkMode = selector(".menu-dark-mode");
 const menuViewAccount = getId("menu-view-account");
 const menuEditEmail = getId("menu-edit-email");
 const menuEditPassword = getId("menu-edit-password");
 
+const deleteConfirmation = getId("deleteConfirmation");
+const boxDeleteConfirmation = getId("boxDeleteConfirmation");
+
+const logoutConfirmation = getId("logoutConfirmation");
+const boxLogoutConfirmation = getId("boxLogoutConfirmation");
+
 const btnBack = getId("btnBack");
+
 const btnDeleteAccount = getId("btnDeleteAccount");
+const btnCancelDelete = getId("btnCancelDelete");
+const btnConfirmDelele = getId("btnConfirmDelete");
+
+const btnCancelLogout = getId("btnCancelLogout");
+const btnConfirmLogout = getId("btnConfirmLogout");
 
 const listAccount = getId("listAccount");
 const dashboardSection = getId("dashboard-section");
@@ -78,10 +90,6 @@ if (isLogin !== "true") {
 }
 
 userEmail.textContent = currentUser.email;
-
-if (logoutBtn) {
-  addEvent(logoutBtn, "click", logoutUser);
-}
 
 function updateLiveTime() {
   const now = new Date();
@@ -124,6 +132,41 @@ function showSection(activeSection) {
   activeSection.hidden = false;
 }
 
+// delete account confirmation
+deleteConfirmation.classList.add("hide");
+function showDeleteModal() {
+  deleteConfirmation.classList.toggle("show");
+  deleteConfirmation.classList.remove("hide");
+
+  deleteConfirmation.hidden = false;
+  boxDeleteConfirmation.hidden = false;
+}
+
+function closeDeleteModal() {
+  deleteConfirmation.classList.remove("show");
+  deleteConfirmation.classList.add("hide");
+
+  deleteConfirmation.hidden = true;
+  boxDeleteConfirmation.hidden = true;
+}
+// logout account confirmation
+logoutConfirmation.classList.add("hide");
+function showLogoutModal() {
+  logoutConfirmation.classList.toggle("show");
+  logoutConfirmation.classList.remove("hide");
+
+  logoutConfirmation.hidden = false;
+  boxLogoutConfirmation.hidden = false;
+}
+
+function closeLogoutModal() {
+  logoutConfirmation.classList.remove("show");
+  logoutConfirmation.classList.add("hide");
+
+  logoutConfirmation.hidden = true;
+  boxLogoutConfirmation.hidden = true;
+}
+
 // view account
 function createUserElement(user) {
   const li = createElement("li");
@@ -148,9 +191,8 @@ users.forEach((user) => {
 
 function deleteAccount() {
   const updatedUsers = users.filter((user) => user.email !== currentUser.email);
-  
+
   setStorage("users", updatedUsers);
-  alert("Akun Anda berhasil dihapus!");
   logoutUser();
 }
 
@@ -230,7 +272,16 @@ addEvent(menuDarkMode, "click", darkModeHamburger);
 
 addEvent(menuViewAccount, "click", () => navigateTo(viewAccountSection));
 addEvent(btnBack, "click", () => showSection(dashboardSection));
-addEvent(btnDeleteAccount, "click", deleteAccount);
+
+addEvent(btnDeleteAccount, "click", showDeleteModal);
+addEvent(btnCancelDelete, "click", closeDeleteModal);
+addEvent(btnConfirmDelele, "click", deleteAccount);
+
+addEvent(btnLogoutAccount, "click", showLogoutModal);
+addEvent(btnCancelLogout, "click", closeLogoutModal);
+if (btnLogoutAccount) {
+  addEvent(btnConfirmLogout, "click", logoutUser);
+}
 
 addEvent(menuEditEmail, "click", () => navigateTo(editEmailSection));
 addEvent(menuEditPassword, "click", () => navigateTo(editPasswordSection));

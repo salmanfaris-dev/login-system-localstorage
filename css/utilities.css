@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.button-right-position {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .pd-top-btm-24 {
   padding-block: 2rem;
 }

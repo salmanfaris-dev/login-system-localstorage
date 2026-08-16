@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/hamburger.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/hamburger.css" />
     <link rel="stylesheet" href="css/utilities.css" />
     <title>Fake-Login</title>
   </head>
@@ -60,7 +61,7 @@
 
           <li class="wrapper-item">
             <div class="menu-item">
-              <span class="menu-label"></span>
+              <span id="btnLogoutAccount" class="menu-label">Logout</span>
             </div>
           </li>
         </ul>
@@ -70,7 +71,6 @@
     <main class="container">
       <section id="dashboard-section" class="dashboard">
         <div class="container-space-between margin-top-32">
-          <button id="logoutBtn" class="btn btn-primary">Logout</button>
           <div class="time-zone">
             <p id="liveDate" class="live-date"></p>
             <p id="liveTime" class="live-time"></p>
@@ -88,7 +88,13 @@
         <h2 class="margin-top-48">View account</h2>
         <ul id="listAccount" class="list-account"></ul>
         <div class="button-right-position">
-          <button type="button" id="btnDeleteAccount" class="btn btn-danger margin-top-32">Delete Account</button>
+          <button
+            type="button"
+            id="btnDeleteAccount"
+            class="btn btn-danger margin-top-32"
+          >
+            Delete Account
+          </button>
         </div>
       </section>
       <section id="edit-email-section" class="edit-email" hidden>
@@ -104,7 +110,11 @@
             <small id="newEmailError" class="error-text"></small>
           </div>
           <div class="button-right-position">
-            <button type="submit" id="edit-email-btn" class="btn btn-primary margin-top-32">
+            <button
+              type="submit"
+              id="edit-email-btn"
+              class="btn btn-primary margin-top-32"
+            >
               Save
             </button>
           </div>
@@ -123,7 +133,11 @@
             <small id="newPasswordError" class="error-text"></small>
           </div>
           <div class="button-right-position margin-top-16">
-            <button type="submit" id="edit-password-btn" class="btn btn-primary margin-top-32">
+            <button
+              type="submit"
+              id="edit-password-btn"
+              class="btn btn-primary margin-top-32"
+            >
               Save
             </button>
           </div>
@@ -131,6 +145,36 @@
       </section>
       <section></section>
     </main>
+
+    <div id="deleteConfirmation" class="confirmation" hidden>
+      <div id="boxDeleteConfirmation" class="box-confirmation" hidden>
+        <h2>Delete Account</h2>
+        <p>Yakin ingin menghapus akun?</p>
+        <div class="button-container">
+          <button type="button" id="btnCancelDelete" class="btn btn-outline">
+            Cancel
+          </button>
+          <button type="button" id="btnConfirmDelete" class="btn btn-danger">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="logoutConfirmation" class="confirmation" hidden>
+      <div id="boxLogoutConfirmation" class="box-confirmation" hidden>
+        <h2>Logout Account</h2>
+        <p>Yakin ingin logout akun?</p>
+        <div class="button-container">
+          <button type="button" id="btnCancelLogout" class="btn btn-outline">
+            Cancel
+          </button>
+          <button type="button" id="btnConfirmLogout" class="btn btn-primary">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="js/dashboard.js"></script>
   </body>

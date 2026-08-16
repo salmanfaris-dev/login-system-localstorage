@@ -1,0 +1,50 @@
+.title-dashboard {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.user-email {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.confirmation {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  z-index: 110;
+  transition: var(--transition);
+}
+
+.confirmation.hide {
+  pointer-events: none;
+}
+
+.confirmation.show {
+  opacity: 1;
+}
+
+.box-confirmation {
+  width: clamp(300px, 40vw, 400px);
+  background-color: var(--white);
+  color: var(--dark);
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.box-confirmation h2 {
+  margin-bottom: 1.5rem;
+}
+
+.box-confirmation p {
+  margin-bottom: 3rem;
+}
