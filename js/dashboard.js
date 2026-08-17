@@ -40,6 +40,7 @@ const menuEditPassword = getId("menu-edit-password");
 const deleteConfirmation = getId("deleteConfirmation");
 const boxDeleteConfirmation = getId("boxDeleteConfirmation");
 
+const btnLogoutAccount = getId("btnLogoutAccount");
 const logoutConfirmation = getId("logoutConfirmation");
 const boxLogoutConfirmation = getId("boxLogoutConfirmation");
 
@@ -279,9 +280,7 @@ addEvent(btnConfirmDelele, "click", deleteAccount);
 
 addEvent(btnLogoutAccount, "click", showLogoutModal);
 addEvent(btnCancelLogout, "click", closeLogoutModal);
-if (btnLogoutAccount) {
-  addEvent(btnConfirmLogout, "click", logoutUser);
-}
+addEvent(btnConfirmLogout, "click", logoutUser);
 
 addEvent(menuEditEmail, "click", () => navigateTo(editEmailSection));
 addEvent(menuEditPassword, "click", () => navigateTo(editPasswordSection));
